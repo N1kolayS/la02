@@ -110,6 +110,22 @@ class Searcher extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string|null
+     */
+    public function getYandexMapsUrl(): ?string
+    {
+        $zoom = 16;
+        if ($this->coordinate && preg_match('/(\d{2}\.\d{1,6}).*?(\d{2}\.\d{1,6})/', $this->coordinate, $matches)) {
+            $longitude = $matches[1];  // 55.751244
+            $latitude = $matches[2]; // 37.618423
+            return "https://yandex.ru/maps/?pt={$latitude},{$longitude}&z=15&l=map&text={$longitude},{$latitude}";
+        }
+        return null;
+
+
+    }
+
+    /**
      * @return bool
      */
     public function hasCar(): bool

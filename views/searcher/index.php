@@ -71,7 +71,11 @@ $this->params['breadcrumbs'][] = $this->title;
                      'content' => function(Searcher $model) {
                     $content[] =  Html::tag('p',$model->address);
                     $content[] =  Html::tag('span',$model->coordinate, ['class' => 'text-muted']);
-
+                    if ($model->getYandexMapsUrl()) {
+                        $content[] = '<br>';
+                        $content[] = Html::a('Открыть на ЯндексКартах', $model->getYandexMapsUrl(),
+                        ['target' => '_blank']);
+                    }
                     return implode("\n", $content);
 
                 }
