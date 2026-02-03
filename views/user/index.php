@@ -39,14 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             //'verification_token',
             //'status',
-            /*
+
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
-            */
+
         ],
     ]); ?>
 
