@@ -91,7 +91,7 @@ class Searcher extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'created_at' => 'Created At',
+            'created_at' => 'Создан',
             'name' => 'Фамилия Имя',
             'tg' => 'Ник в телеграм',
             'call' => 'Позывной',
@@ -109,5 +109,62 @@ class Searcher extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * @return bool
+     */
+    public function hasCar(): bool
+    {
+        return $this->auto_number != null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSPG(): bool
+    {
+        return (bool)$this->spg;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSG(): bool
+    {
+        return (bool)$this->sg;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUrban(): bool
+    {
+        return (bool) $this->target_urban;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isForest(): bool
+    {
+        return (bool)$this->target_forest;
+    }
+
+    public function isMdeicineBase(): bool
+    {
+        return (bool)$this->medicine_base;
+    }
+
+    public function isMdeicineSpec(): bool
+    {
+        return (bool)$this->medicine_spec;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMedicine(): bool
+    {
+        return $this->isMdeicineSpec() || $this->isMdeicineBase();
+    }
 
 }
