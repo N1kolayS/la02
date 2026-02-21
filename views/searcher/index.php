@@ -138,7 +138,73 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 }
             ],
+            [
+                'label' => 'Маркер',
+                'content' => function(Searcher $model) {
+                    $content = [];
+                    if ($model->isForest()) {
+                        $content[] = '🌲';
+                    }
+                    else {
+                        $content[] = '🏢';
+                    }
+                    if ($model->hasCar()) {
+                        $content[] = '🚗';
+                    }
+                    else {
+                        $content[] = '🚶';
+                    }
+                    if ($model->hasEquipment()) {
+                        $content[] = '🔦';
+                    }
+                    $content[]= '🧸';
 
+                    $content[] = $model->call ?: $model->tg;
+                    $content[] = '+'.$model->phone;
+
+                    return implode(" ", $content);
+
+                }
+            ],
+            [
+                'label' => 'Информация',
+                'content' => function(Searcher $model) {
+                    $content[] = 'тг @'.$model->tg;
+
+                    if ($model->hasCar()) {
+                        $content[] = 'Авто: '. $model->auto_number;
+                    }
+                    else {
+                        $content[] = 'Пеший';
+                    }
+                    $content[] = 'Оборудование: ';
+                    if ($model->hasEquipment()) {
+                        $content[] = 'Оборудование: '. $model->equipment;
+                    }
+                    else {
+                        $content[] = 'Нет';
+                    }
+
+                    if ($model->isSPG()) {
+                        $content[]= ' СПГ ';
+                    }
+                    if ($model->isSG()) {
+                        $content[]= ' СГ';
+                    }
+                    if ($model->isMedicine()) {
+                        if ($model->isMdeicineBase()) {
+                            $content[] = 'ПП - Базовый';
+                        }
+                        else {
+                            $content[] = 'ПП - специальный';
+                        }
+                    }
+
+
+                    return implode(" / ", $content);
+
+                }
+            ],
 
             [
                 'class' => ActionColumn::class,

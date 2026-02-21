@@ -128,6 +128,14 @@ class Searcher extends \yii\db\ActiveRecord
     /**
      * @return bool
      */
+    public function hasEquipment(): bool
+    {
+        return (bool)$this->equipment;
+    }
+
+    /**
+     * @return bool
+     */
     public function hasCar(): bool
     {
         return $this->auto_number != null;
