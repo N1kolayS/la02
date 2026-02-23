@@ -177,12 +177,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     else {
                         $content[] = 'Пеший';
                     }
-                    $content[] = 'Оборудование: ';
+
                     if ($model->hasEquipment()) {
                         $content[] = 'Оборудование: '. $model->equipment;
                     }
                     else {
-                        $content[] = 'Нет';
+                        $content[] = 'Оборудование: Нет';
                     }
 
                     if ($model->isSPG()) {
